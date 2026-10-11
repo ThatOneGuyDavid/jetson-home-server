@@ -1,0 +1,59 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    network_mode: host
+    privileged: true
+    restart: unless-stopped
+    stop_grace_period: 60s
+    environment:
+      TZ: ${TZ:-Etc/UTC}
+    volumes:
+      - ./homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+
+  open-webui:
+    container_name: open-webui
+    image: ghcr.io/open-webui/open-webui:v0.8.10
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      PORT: "3000"
+      OLLAMA_BASE_URL: http://127.0.0.1:11434
+      ANONYMIZED_TELEMETRY: "false"
+      DO_NOT_TRACK: "true"
+      SCARF_NO_ANALYTICS: "true"
+      CORS_ALLOW_ORIGIN: ${OPEN_WEBUI_ORIGIN:-http://192.168.1.50:3000}
+    volumes:
+      - open-webui:/app/backend/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:3000/api/version >/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  wyoming-whisper:
+    container_name: wyoming-whisper
+    image: rhasspy/wyoming-whisper:latest
+    restart: unless-stopped
+    command: --model tiny-int8 --language en
+    ports:
+      - 127.0.0.1:10300:10300
+    volumes:
+      - ./wyoming/whisper:/data
+
+  wyoming-piper:
+    container_name: wyoming-piper
+    image: rhasspy/wyoming-piper:latest
+    restart: unless-stopped
+    command: --voice en_US-lessac-medium
+    ports:
+      - 127.0.0.1:10200:10200
+    volumes:
+      - ./wyoming/piper:/data
+
+volumes:
+  open-webui:
+    external: true
