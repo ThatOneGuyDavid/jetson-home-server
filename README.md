@@ -24,22 +24,27 @@ account names, or other details from the original installation.
 
 - NVIDIA Jetson Orin Nano Developer Kit, 8 GB
 - Active cooling
-- 1 TB NVMe SSD
+- Samsung 990 EVO Plus 1 TB NVMe SSD
 - Home Assistant Voice Preview Edition
 - An OpenWrt router capable of separate Trusted and IoT networks
 - An IoT wireless access point or mesh in access-point mode
 
 <table>
   <tr>
-    <td align="center" width="50%">
+    <td align="center" width="33%">
       <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/autonomous-machines/embedded-systems/nano-super-developer-kit/jetson-orin-nano-super-developer-kit-og.jpg" alt="NVIDIA Jetson Orin Nano Super Developer Kit" width="420"><br>
       <strong>NVIDIA Jetson Orin Nano 8GB Developer Kit</strong><br>
       <sub>Official image: NVIDIA</sub>
     </td>
-    <td align="center" width="50%">
+    <td align="center" width="33%">
       <img src="https://www.home-assistant.io/images/voice-pe/og.jpg" alt="Home Assistant Voice Preview Edition" width="420"><br>
       <strong>Home Assistant Voice Preview Edition</strong><br>
       <sub>Official image: Home Assistant / Nabu Casa</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="https://m.media-amazon.com/images/I/711X2%2BlwfXL._AC_SL1500_.jpg" alt="Samsung 990 EVO Plus 1TB NVMe SSD" width="420"><br>
+      <strong>Samsung 990 EVO Plus 1TB NVMe SSD</strong><br>
+      <sub>Product image: Samsung retail listing</sub>
     </td>
   </tr>
 </table>
@@ -48,6 +53,8 @@ The Jetson used here is the official 8 GB developer kit, model
 `945-13766-0000-000` ([canonical Amazon listing](https://www.amazon.com/dp/B0BZJTQ5YP)).
 NVIDIA's software update enables the newer "Super" performance mode on existing
 Orin Nano developer kits; the 1 TB NVMe SSD was added separately.
+The installed drive is a
+[Samsung 990 EVO Plus 1TB](https://www.samsung.com/us/memory-storage/nvme-ssd/990-evo-plus-gen4-nvme-ssd-1tb-sku-mz-v9s1t0b-am/).
 
 The original network used a GL.iNet Flint 2 running OpenWrt and a separate Wi-Fi
 mesh for IoT clients. Those exact products are optional; VLAN-capable equipment
