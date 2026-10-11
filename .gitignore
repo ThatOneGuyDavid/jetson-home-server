@@ -1,0 +1,7 @@
+.env
+homeassistant/config/
+wyoming/
+backups/
+*.tar
+*.tar.gz
+*.zip
